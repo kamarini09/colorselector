@@ -1,6 +1,7 @@
 "use strict";
 
 window.addEventListener("DOMContentLoaded" , start);
+let hexColor="";
 
 function start(){
     console.log("START");
@@ -8,20 +9,32 @@ function start(){
 }
 
 function addEventListeners(){
-    document.querySelector("input").addEventListener("input" , colorChange);
+    document.querySelector("input").addEventListener("input" , colorInput);
 
 }
+function colorInput(event){
+  hexColor = event.currentTarget.value;
+  colorChange();
+}
+function colorChange(){ 
+  document.querySelector("body").style.backgroundColor = hexColor;
+  showHEX();
+  showRGB();
+  showHSL(); 
+}
 
-function colorChange(){
-    let hexColor = this.value;
-    console.log("HEX: " ,  hexColor);
-    let rgb = hexToRGB(hexColor);
-    let hsl = RGBtoHSL(rgb);
-    //let hsl = RGBtoHSL(hexToRGB(this.value)); the same with previous
-    document.querySelector("body").style.backgroundColor = hexColor;
-    document.querySelector("#hex").textContent = `HEX : ${hexColor}`;
-    document.querySelector("#rgb").textContent = `RGB: ${rgb.r}, ${rgb.g} , ${rgb.b}`;
-    document.querySelector("#hsl").textContent = `HSL:${hsl.h} , ${hsl.s}% , ${hsl.l}%`;
+function showHEX(){
+  document.querySelector("#hex").textContent = `HEX : ${hexColor}`;
+}
+
+function showRGB(){
+  let rgb = hexToRGB(hexColor);
+  document.querySelector("#rgb").textContent = `RGB: ${rgb.r}, ${rgb.g} , ${rgb.b}`;
+}
+
+function showHSL(){
+  let hsl = RGBtoHSL(hexToRGB(hexColor));
+  document.querySelector("#hsl").textContent = `HSL:${hsl.h} , ${hsl.s}% , ${hsl.l}%`;
 }
 
 
@@ -74,8 +87,6 @@ l *= 100;
 //console.log(r,g,b);
 //return (`${r} %,${g}%,${b}%`)
 return {h: Math.floor(h) ,s: Math.floor(s),l: Math.floor(l)}
-
-
 }
 
 
@@ -87,7 +98,7 @@ function hexToRGB(hex){
     //return (`${r},${g},${b}`);
     return {r,g,b};
     
-}
+  }
 
 
 
