@@ -13,17 +13,20 @@ function addEventListeners(){
 }
 
 function colorChange(){
-    console.log("HEX: " ,this.value);
-    //console.log("RGB: ", hexToRGB(this.value));
-    //console.log("HSL: ", RGBtoHSL(hexToRGB(this.value)));
-    let rgb = hexToRGB(this.value);
-    let hsl = RGBtoHSL(rgb)
-    console.log(`RGB: , ${rgb.r}, ${rgb.g} , ${rgb.b}`);
-    console.log(`HSL: , ${hsl.h} , ${hsl.s}% , ${hsl.l}%`);
+    let hexColor = this.value;
+    console.log("HEX: " ,  hexColor);
+    let rgb = hexToRGB(hexColor);
+    let hsl = RGBtoHSL(rgb);
+    //let hsl = RGBtoHSL(hexToRGB(this.value)); the same with previous
+    document.querySelector("body").style.backgroundColor = hexColor;
+    document.querySelector("#hex").textContent = `HEX : ${hexColor}`;
+    document.querySelector("#rgb").textContent = `RGB: ${rgb.r}, ${rgb.g} , ${rgb.b}`;
+    document.querySelector("#hsl").textContent = `HSL:${hsl.h} , ${hsl.s}% , ${hsl.l}%`;
 }
 
-//RGBtoHSL(0,0,0);
 
+
+// ------------------converting functions--------------
 
 function RGBtoHSL(rgb){
 
@@ -77,10 +80,10 @@ return {h: Math.floor(h) ,s: Math.floor(s),l: Math.floor(l)}
 
 
 
-function hexToRGB(hexColor){
-    const r = parseInt(hexColor.substring(1,3),16);
-    const g = parseInt(hexColor.substring(3,5),16);
-    const b = parseInt(hexColor.substring(5,7),16);
+function hexToRGB(hex){
+    const r = parseInt(hex.substring(1,3),16);
+    const g = parseInt(hex.substring(3,5),16);
+    const b = parseInt(hex.substring(5,7),16);
     //return (`${r},${g},${b}`);
     return {r,g,b};
     
