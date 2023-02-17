@@ -12,34 +12,38 @@ function addEventListeners(){
     document.querySelector("input").addEventListener("input" , colorInput);
 
 }
+
+//
 function colorInput(event){
   hexColor = event.currentTarget.value;
   colorChange();
 }
+
+//------------------------VIEW-----------------------------------
 function colorChange(){ 
-  document.querySelector("body").style.backgroundColor = hexColor;
-  showHEX();
-  showRGB();
-  showHSL(); 
-}
-
-function showHEX(){
-  document.querySelector("#hex").textContent = `HEX : ${hexColor}`;
-}
-
-function showRGB(){
+  document.querySelector("#box").style.backgroundColor = hexColor;
   let rgb = hexToRGB(hexColor);
-  document.querySelector("#rgb").textContent = `RGB: ${rgb.r}, ${rgb.g} , ${rgb.b}`;
+  let hsl = RGBtoHSL(rgb);
+  showHEX(hexColor);
+  showRGB(rgb);
+  showHSL(hsl); 
 }
 
-function showHSL(){
-  let hsl = RGBtoHSL(hexToRGB(hexColor));
+function showHEX(color){
+  document.querySelector("#hex").textContent = `HEX : ${color}`;
+}
+
+function showRGB(rgb){
+  document.querySelector("#rgb").textContent = `RGB: r ${rgb.r} g ${rgb.g} b ${rgb.b}`;
+}
+
+function showHSL(hsl){
   document.querySelector("#hsl").textContent = `HSL:${hsl.h} , ${hsl.s}% , ${hsl.l}%`;
 }
 
 
 
-// ------------------converting functions--------------
+// ------------------CONTROLLER--------------
 
 function RGBtoHSL(rgb){
 
