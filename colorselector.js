@@ -13,7 +13,8 @@ function addEventListeners(){
 
 }
 
-//
+//------------------------MODEL---------------------------------
+
 function colorInput(event){
   hexColor = event.currentTarget.value;
   colorChange();
@@ -43,7 +44,7 @@ function showHSL(hsl){
 
 
 
-// ------------------CONTROLLER--------------
+// ---------------------------------CONTROLLER----------------------------------
 
 function RGBtoHSL(rgb){
 
