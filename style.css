@@ -1,0 +1,17 @@
+#box {
+  width: 100px;
+  height: 100px;
+  padding: 8px;
+  border: 2px solid black;
+  margin: 0;
+}
+
+section {
+  border: 2px solid black;
+  padding: 20px;
+  width: 200px;
+}
+
+h2 {
+  font-size: large;
+}
